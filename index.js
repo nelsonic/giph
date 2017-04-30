@@ -7,7 +7,7 @@ const app = express()
 const port = process.env.PORT || 8000
 
 app
-.use(bodyParser)
+.use(bodyParser.json())
 .get('/:queryText', giphinateHandler)
 
 .listen(port, function () {
