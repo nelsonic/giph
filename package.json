@@ -1,0 +1,29 @@
+{
+  "name": "giphinate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "migrations": "sequelize db:migrate",
+    "lint": "eslint .",
+    "test": "echo 'Error: no test specified! 🐉' && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "db-migrate": "^0.9.25",
+    "express": "^4.13.4",
+    "menna": "^1.0.1",
+    "sequelize": "^3.23.3",
+    "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {
+    "eslint-config-standard-trailing-commas": "^6.1.0",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
+    "sequelize-cli": "^2.5.1",
+    "standard": "^8.6.0"
+  }
+}

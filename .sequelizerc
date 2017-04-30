@@ -1,0 +1,7 @@
+const path = require('path')
+
+module.exports = {
+    'models-path': path.resolve('lib', 'schemas'),
+    'config': path.resolve('database.json'),
+    logging: true,
+}
