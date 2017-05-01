@@ -7,7 +7,7 @@
     "start": "node index.js",
     "migrations": "sequelize db:migrate",
     "lint": "eslint .",
-    "test": "./node_modules/.bin/mocha ./lib/**/*.spec.js"
+    "test": "./node_modules/.bin/mocha ./setupTests.js ./lib/**/*.spec.js"
   },
   "author": "",
   "license": "ISC",
