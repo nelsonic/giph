@@ -1,5 +1,3 @@
-'use strict'
-
 const up = (queryInterface, DataTypes) =>
   queryInterface.createTable('giphys', {
     giphId: {
