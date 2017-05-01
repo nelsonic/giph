@@ -1,13 +1,32 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const giphinateHandler = require('./lib/handlers/giphinate')
-const app = express()
-const port = process.env.PORT || 8000
+// @see https://nodejs.org/api/cluster.html
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+const logger = require('menna')
 
-app
-.use(bodyParser.json())
-.get('/:queryText', giphinateHandler)
+const setupExpress = require('./setupExpress')
 
-.listen(port, function () {
-  console.log(`Listening on port ${port}`)
-})
+if (cluster.isMaster) {
+  // Setup database
+  const schema = require('./lib/schemas')()
+  schema.Giphys.sync({ force: true })
+
+  logger.info(`Master ${process.pid} is running`);
+
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    logger.warning(`worker ${worker.process.pid} died`);
+
+    // Retry
+    cluster.fork()
+  });
+} else {
+  setupExpress()
+
+  logger.info(`Worker ${process.pid} started`);
+}
+
+// TODO: implement e2e/component tests depending on the testing strategy you want to follow
