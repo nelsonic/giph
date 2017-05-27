@@ -1,5 +1,5 @@
 {
-  "name": "giphinate",
+  "name": "giph",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,9 @@
     "start": "node index.js",
     "migrations": "sequelize db:migrate",
     "lint": "eslint .",
-    "test": "make test"
+    "test": "npm run test-unit && npm run test-integration",
+    "test-integration": "./node_modules/.bin/mocha ./setupTests ./lib/**/*.integration.js",
+    "test-unit": "./node_modules/.bin/mocha ./setupTests.js ./lib/**/*.spec.js"
   },
   "author": "",
   "license": "ISC",
